@@ -2,6 +2,7 @@ package com.ohgiraffers.mvc.employee.controller;
 
 import com.ohgiraffers.mvc.employee.dto.EmpDTO;
 import com.ohgiraffers.mvc.employee.dto.EmpInsertDTO;
+import com.ohgiraffers.mvc.employee.dto.EmpUpdateDTO;
 import com.ohgiraffers.mvc.employee.service.EmpService;
 
 import javax.servlet.ServletException;
@@ -32,9 +33,9 @@ public class SelectEmpServlet extends HttpServlet {
         if (empId == null){
             //전체 조회
             // get /employees
-            List<EmpDTO> empList = empService.selectAllEmp();
+            List<EmpDTO> emplist = empService.selectAllEmp();
 
-            request.setAttribute("emplist",empList);
+            request.setAttribute("emplist",emplist);
             path =  "/WEB-INF/views/employee/empList.jsp";
         }else {
             // get / employees?empId=200
@@ -80,6 +81,7 @@ public class SelectEmpServlet extends HttpServlet {
         }
         req.getRequestDispatcher(path).forward(req,resp);
     }
+
 
     @Override
     public void destroy() {

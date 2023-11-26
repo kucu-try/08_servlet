@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -13,7 +13,7 @@
             <th>이메일</th>
             <th>전화번호</th>
         </tr>
-        <c:forEach items="${requestScope.empList}" var="emp">
+        <c:forEach items="${requestScope.emplist}" var="emp">
             <tr>
                 <td>${emp.empId}</td>
                 <td>${emp.empName}</td>

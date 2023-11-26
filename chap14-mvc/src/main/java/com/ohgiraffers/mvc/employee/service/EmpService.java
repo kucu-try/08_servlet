@@ -2,7 +2,9 @@ package com.ohgiraffers.mvc.employee.service;
 
 import com.ohgiraffers.mvc.employee.dao.EmpMapper;
 import com.ohgiraffers.mvc.employee.dto.EmpDTO;
+import com.ohgiraffers.mvc.employee.dto.EmpDeleteDTO;
 import com.ohgiraffers.mvc.employee.dto.EmpInsertDTO;
+import com.ohgiraffers.mvc.employee.dto.EmpUpdateDTO;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -47,6 +49,38 @@ public class EmpService {
 
         empMapper = session.getMapper(EmpMapper.class);
         int result = empMapper.insert(insert);
+
+        if (result <= 0){
+            session.rollback();
+        }else {
+            session.commit();
+        }
+        session.close();
+
+        return result;
+    }
+
+    public int update(EmpUpdateDTO update) {
+        SqlSession session =getSession();
+
+        empMapper = session.getMapper(EmpMapper.class);
+        int result = empMapper.update(update);
+
+        if (result <= 0){
+            session.rollback();
+        }else {
+            session.commit();
+        }
+        session.close();
+
+        return result;
+    }
+
+    public int delete(EmpDeleteDTO delete) {
+        SqlSession session =getSession();
+
+        empMapper = session.getMapper(EmpMapper.class);
+        int result = empMapper.delete(delete);
 
         if (result <= 0){
             session.rollback();
